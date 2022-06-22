@@ -32,8 +32,6 @@ wire        [32-1:0] RSdata_o;
 wire        [32-1:0] RTdata_o;
 
 //Read the data
-// assign RSdata_o = RSaddr_i == RDaddr_i ? RDdata_i : Reg_File[RSaddr_i];
-// assign RTdata_o = RTaddr_i == RDaddr_i ? RDdata_i : Reg_File[RTaddr_i];
 assign RSdata_o = Reg_File[RSaddr_i];
 assign RTdata_o = Reg_File[RTaddr_i];
 

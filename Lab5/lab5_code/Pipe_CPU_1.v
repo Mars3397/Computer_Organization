@@ -97,10 +97,6 @@ MUX_2to1 #(.size(32)) Mux0(
     .data1_i(pc_next1_s4),
     .select_i(branch_select),
     .data_o(pc_pre)
-    // .data0_i(pc_next0),
-    // .data1_i(pc_next1_s3),
-    // .select_i(branch_select),
-    // .data_o(pc_pre)
 );
 
 ProgramCounter PC(
@@ -202,8 +198,6 @@ Pipe_Reg #(.size(7 * 1 + 3 + 5 * 32 + 2)) ID_EX(
 Shift_Left_Two_32 Shifter(
     .data_i(signExtended_s3),
     .data_o(leftShifted)
-    // .data_i(signExtended),
-    // .data_o(leftShifted)
 );
 
 ALU ALU(
@@ -238,9 +232,6 @@ Adder Add_pc_branch(
     .src1_i(pc_next0_s3),     
     .src2_i(leftShifted),     
     .sum_o(pc_next1_s3)  
-    // .src1_i(pc_next0_s2),     
-    // .src2_i(leftShifted),     
-    // .sum_o(pc_next1_s3)   
 );
 
 MUX_2to1 #(.size(7)) Mux_flush_s3(
@@ -282,9 +273,6 @@ Pipe_Reg #(.size(142)) EX_MEM(
     .clk_i(clk_i),
     .rst_i(rst_i),
     .keep_i(1'b0),
-    // .flush_i(1'b0),
-    // .data_i({ MemtoReg_s33, regWrite_s33, branch_s33, MemRead_s33, Instruction_s3,
-    //     MemWrite_s33, pc_next1_s3, zero, ALUresult, ALU_rt, writeReg1, BranchType_s33, Branch_new }),
     .flush_i(EX_flush),
     .data_i({ MemtoReg_s3, regWrite_s3, branch_s3, MemRead_s3, Instruction_s3,
         MemWrite_s3, pc_next1_s3, zero, ALUresult, ALU_rt, writeReg1, BranchType_s3, Branch_new }),
